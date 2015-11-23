@@ -19,7 +19,6 @@ var rxOk = regexp.MustCompile(`https://kirei-kaigi\.co\.jp(/.*)`)
 // urlに訪れた時の処理
 func (e *Ext) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
 	// URL集める
-	fmt.Println(doc.title)
 	return nil, true
 }
 
