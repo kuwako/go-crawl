@@ -20,7 +20,7 @@ var urlLog = "/Users/kuwako/dev/go-crawl/url.log"
 
 func main() {
 	result := makeUrl(base)
-	//getUrl(result)
+	// getUrl(result)
 	results := getUrl(result)
 
 	for len(results) > 0 {
