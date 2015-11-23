@@ -15,24 +15,21 @@ var stock = []string{}
 var notfounds = []string{}
 var notfoundImgPath = "/img/pc/common/error/imgNotFond.png"
 var base = "https://kirei-kaigi.jp/"
-var notfoundLog = "~/dev/go-crawl/notfound.log"
-var urlLog = "~/dev/go-crawl/url.log"
+var notfoundLog = "/Users/kuwako/dev/go-crawl/notfound.log"
+var urlLog = "/Users/kuwako/dev/go-crawl/url.log"
 
 func main() {
-	var test = []string{"test", "kuwako"}
-	writeFile(notfoundLog, test)
-	//	result := makeUrl(base)
-	//	results := getUrl(result)
+	result := makeUrl(base)
+	getUrl(result)
+	//results := getUrl(result)
 	//
 	//	//	for len(results) > 0 {
 	//	//		results = getUrl(results)
 	//	//	}
-	//
-	//	fmt.Println(results)
-	//	fmt.Println("end_of_for")
-	//	fmt.Println(notfounds)
-	//	writeFile(urlLog, stock)
-	//	writeFile(notfoundLog, notfounds)
+
+	fmt.Println("start writing log files")
+	writeFile(urlLog, stock)
+	writeFile(notfoundLog, notfounds)
 }
 
 // urlを渡したら、そこに含まれるurlのリストを取得する
@@ -91,9 +88,8 @@ func checkNotFound(doc *goquery.Document) {
 func writeFile(fileName string, stringArray []string) {
 	var writer *bufio.Writer
 
-	fmt.Println(fileName)
-	fmt.Println(stringArray)
-	file, _ := os.OpenFile(fileName, os.O_WRONLY, 0644)
+	file, err := os.OpenFile(fileName, os.O_WRONLY, 0644)
+	fmt.Println(err)
 	writer = bufio.NewWriter(file)
 
 	for idx := range stringArray {
